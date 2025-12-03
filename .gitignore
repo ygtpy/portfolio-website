@@ -1,0 +1,112 @@
+############################
+# Visual Studio
+############################
+.vs/
+*.user
+*.suo
+*.sln.docstates
+
+############################
+# Build Results
+############################
+bin/
+obj/
+TestResults/
+*.dll
+*.exe
+*.mdb
+*.cache
+*.log
+*.pdb
+
+############################
+# Publish Output
+############################
+**/publish/
+**/Release/
+**/Debug/
+**/out/
+
+############################
+# ASP.NET Core
+############################
+# Environment-specific
+appsettings.Development.json
+appsettings.Local.json
+appsettings.*.local.json
+
+# Publish profile
+Properties/PublishProfiles/
+
+# Launch profiles (sensitive data)
+Properties/launchSettings.json
+
+############################
+# Entity Framework
+############################
+# Migrations snapshot backups
+*Migrations/*Designer.cs
+*Migrations/*Snapshot.cs
+
+# EF Core model cache
+*ModelCache*
+
+############################
+# Logs & Temp Files
+############################
+*.log
+*.tlog
+*.tmp
+*.temp
+*.dmp
+
+############################
+# User Secrets
+############################
+secrets.json
+
+############################
+# NuGet
+############################
+*.nupkg
+*.snupkg
+packages/
+.nuget/
+project.lock.json
+project.fragment.lock.json
+
+############################
+# Rider / JetBrains
+############################
+.idea/
+*.DotSettings.user
+
+############################
+# VS Code
+############################
+.vscode/
+*.code-workspace
+
+############################
+# Others
+############################
+*.dbmdl
+*.jfm
+*.pfx
+*.key
+*.cer
+
+# Node dependencies (if template uses npm assets)
+node_modules/
+
+# Libman
+wwwroot/lib/
+
+# Temp/static cache
+wwwroot/dist/
+wwwroot/node_modules/
+
+# OS generated
+.DS_Store
+Thumbs.db
+ehthumbs.db
