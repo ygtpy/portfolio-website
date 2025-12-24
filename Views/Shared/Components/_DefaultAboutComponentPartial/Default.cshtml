@@ -1,4 +1,5 @@
-﻿@model List<About>
+﻿
+@model List<About>
 
 
 <section id="section2">
@@ -9,19 +10,19 @@
         {
             <div class="row">
 			<div class="col-sm-3">
-				<img src="images/man02.png" alt="man" class="img-responsive section-img">
+				<img src="@item.ImageUrl" alt="man" class="img-responsive section-img">
 			</div> <!-- end .col-sm-3 -->
 			<div class="col-sm-9">
 				<h3 class="small-margin-bottom">@item.NameSurname</h3>
 				<h5> @item.Title</h5>
 				<p>@item.Description  </p>
-				<div class="signature"><img src="images/signature.png" alt="signature" class="img-responsive"></div>
+
 				<ul class="list-unstyled text-uppercase">
 					<li><b>Doğum Tarihim:</b> 3 March 2003</li>
 					<li><b>Telefon:</b> @item.Phone</li>
 					<li><b>Email:</b> @item.Email</li>
 					<li><b>Adres:</b> @item.Address</li>
-						<li><b>Website:</b> https://github.com/ygtpy</li>
+						<li><b>GitHub:</b> https://github.com/ygtpy</li>
 				</ul> <!-- end .list-unstyled -->
 				<div class="spacer"></div>
 				<h3>Ne iş yapıyorum</h3>
@@ -29,7 +30,7 @@
 					<div class="col-sm-4">
 						<div class="service">
 							<div class="icon"><i class="ion-monitor"></i></div>
-							<h5>Back-end Developer</h5>
+							<h5>@item.Title</h5>
 						</div> <!-- end .service -->
 					</div> <!-- end .col-sm-4 -->
 
