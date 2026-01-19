@@ -1,41 +1,21 @@
-﻿<section id="section5">
+﻿@model List<AkademiQPortfolio.Entities.Education>
+<section id="section5">
 	<div class="container">
-		<h2>Educational Value</h2>
+		<h2>Eğitim Geçmişim</h2>
 		<div class="education clearfix">
-			<div class="item">
-				<div class="marker"></div>
-				<div class="content">
-					<span> </span>
-					<h4>İzzettin Çalışlar Anadolu lisesi</h4>
-				</div>
-				<div class="year">2016 - 2020</div>
-			</div> <!-- end item -->
-			<div class="item">
-				<div class="marker"></div>
-				<div class="content">
-					<span>Isparta Uygulamalı Bilimler Üniversitesi</span>
-					<h4>Bilgisayar Programcılığı</h4>
-				</div>
-				<div class="year">2023 - 2025</div>
-			</div> <!-- end item -->
-			<div class="item">
-				<div class="marker"></div>
-				<div class="content">
-					<span>HSD Developers</span>
-					<h4>Huawei Cloud Devops Bootcamp</h4>
-				</div>
-				<div class="year">2025 - 2025</div>
-			</div> <!-- end item -->
-			<div class="item">
-				<div class="marker"></div>
-				<div class="content">
-					<span>Acunmedya Akademi</span>
-					<h4>C# .Net Core ile Programlamaya Giriş</h4>
-				</div>
-				<div class="year">2025 - 2025</div>
-			</div> <!-- end item -->
+            @foreach(var item in Model)
+            {
+			    <div class="item">
+				    <div class="marker"></div>
+				    <div class="content">
+					    <span>@item.Department</span>
+					    <h4>@item.Title</h4>
+				    </div>
+				    <div class="year">@item.EducationDate</div>
+			    </div>
+            }
 			<div class="line"></div>
-		</div> <!-- end .education -->
+		</div>
 
 		<h2>Hobbies & Interest</h2>
 		<div class="row">

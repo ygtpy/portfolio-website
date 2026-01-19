@@ -29,6 +29,8 @@ public partial class AppDbContext : DbContext
 
     public virtual DbSet<Message> Messages { get; set; }
 
+    public virtual DbSet<Testimonial> Testimonials { get; set; }
+
     public virtual DbSet<Skill> Skills { get; set; }
 
     public virtual DbSet<Work> Works { get; set; }
@@ -41,7 +43,7 @@ public partial class AppDbContext : DbContext
     {
         modelBuilder.Entity<About>(entity =>
         {
-            entity.HasNoKey();
+            entity.HasKey(e => e.AboutId);
 
             entity.Property(e => e.AboutId).ValueGeneratedOnAdd();
             entity.Property(e => e.Address)
@@ -93,7 +95,7 @@ public partial class AppDbContext : DbContext
 
         modelBuilder.Entity<Message>(entity =>
         {
-            entity.HasNoKey();
+            entity.HasKey(e => e.MessageId);
 
             entity.Property(e => e.MessageText).HasMaxLength(500);
             entity.Property(e => e.SendDate).HasColumnType("datetime");
@@ -114,6 +116,16 @@ public partial class AppDbContext : DbContext
         {
             entity.Property(e => e.SubTitle).HasMaxLength(50);
             entity.Property(e => e.Title).HasMaxLength(50);
+        });
+
+
+
+        modelBuilder.Entity<Testimonial>(entity =>
+        {
+            entity.HasKey(e => e.TestimonialId);
+            entity.Property(e => e.ClientName).HasMaxLength(100);
+            entity.Property(e => e.Company).HasMaxLength(100);
+            entity.Property(e => e.Comment).HasMaxLength(500);
         });
 
         OnModelCreatingPartial(modelBuilder);

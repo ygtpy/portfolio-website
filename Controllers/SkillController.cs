@@ -13,7 +13,7 @@ namespace AkademiQPortfolio.Controllers
             _context = context;
         }
 
-        public IActionResult SkillList()
+        public IActionResult Index()
         {
             var values = _context.Skills.ToList();
             return View(values);
@@ -30,7 +30,7 @@ namespace AkademiQPortfolio.Controllers
         {
             _context.Skills.Add(skill);
             _context.SaveChanges();
-            return RedirectToAction("SkillList");
+            return RedirectToAction("Index");
         }
 
         public IActionResult DeleteSkill(int id)
@@ -44,7 +44,7 @@ namespace AkademiQPortfolio.Controllers
 
             _context.Skills.Remove(skill);
             _context.SaveChanges();
-            return RedirectToAction("SkillList");
+            return RedirectToAction("Index");
         }
 
         [HttpGet]
@@ -70,7 +70,7 @@ namespace AkademiQPortfolio.Controllers
 
             _context.Skills.Update(skill);
             _context.SaveChanges();
-            return RedirectToAction("SkillList");
+            return RedirectToAction("Index");
         }
     }
 }

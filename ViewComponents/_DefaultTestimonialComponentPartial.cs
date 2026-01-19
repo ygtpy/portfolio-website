@@ -1,21 +1,21 @@
-﻿using AkademiQPortfolio.Data;
+using AkademiQPortfolio.Data;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 
 namespace AkademiQPortfolio.ViewComponents
 {
-    public class _DefaultEducationComponentPartial : ViewComponent
+    public class _DefaultTestimonialComponentPartial : ViewComponent
     {
         private readonly AppDbContext _context;
 
-        public _DefaultEducationComponentPartial(AppDbContext context)
+        public _DefaultTestimonialComponentPartial(AppDbContext context)
         {
             _context = context;
         }
 
         public IViewComponentResult Invoke()
         {
-            var values = _context.Educations.ToList();
+            var values = _context.Testimonials.ToList();
             return View(values);
         }
     }
