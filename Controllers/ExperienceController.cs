@@ -1,7 +1,6 @@
 using AkademiQPortfolio.Data;
 using AkademiQPortfolio.Entities;
 using Microsoft.AspNetCore.Mvc;
-using System.Linq;
 
 namespace AkademiQPortfolio.Controllers
 {
@@ -14,38 +13,38 @@ namespace AkademiQPortfolio.Controllers
             _context = context;
         }
 
-        public IActionResult Index()
+        public IActionResult ExperienceList()
         {
             var values = _context.Experiences.ToList();
             return View(values);
         }
 
         [HttpGet]
+
         public IActionResult CreateExperience()
         {
             return View();
         }
+
 
         [HttpPost]
         public IActionResult CreateExperience(Experience experience)
         {
             _context.Experiences.Add(experience);
             _context.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("ExperienceList");
         }
 
         public IActionResult DeleteExperience(int id)
         {
             var value = _context.Experiences.Find(id);
-            if(value != null)
-            {
-                _context.Experiences.Remove(value);
-                _context.SaveChanges();
-            }
-            return RedirectToAction("Index");
+            _context.Experiences.Remove(value);
+            _context.SaveChanges();
+            return RedirectToAction("ExperienceList");
         }
 
         [HttpGet]
+
         public IActionResult UpdateExperience(int id)
         {
             var value = _context.Experiences.Find(id);
@@ -53,11 +52,12 @@ namespace AkademiQPortfolio.Controllers
         }
 
         [HttpPost]
+
         public IActionResult UpdateExperience(Experience experience)
         {
             _context.Experiences.Update(experience);
             _context.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("ExperienceList");
         }
     }
 }

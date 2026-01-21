@@ -14,7 +14,7 @@ namespace AkademiQPortfolio.Controllers
             _context = context;
         }
 
-        public IActionResult Index()
+        public IActionResult AboutList()
         {
             var values = _context.Abouts.ToList();
             return View(values);
@@ -31,18 +31,18 @@ namespace AkademiQPortfolio.Controllers
         {
             _context.Abouts.Add(about);
             _context.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("AboutList");
         }
 
         public IActionResult DeleteAbout(int id)
         {
             var value = _context.Abouts.Find(id);
-            if(value != null)
+            if (value != null)
             {
                 _context.Abouts.Remove(value);
                 _context.SaveChanges();
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("AboutList");
         }
 
         [HttpGet]
@@ -57,7 +57,7 @@ namespace AkademiQPortfolio.Controllers
         {
             _context.Abouts.Update(about);
             _context.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("AboutList");
         }
     }
 }

@@ -22,7 +22,7 @@ namespace AkademiQPortfolio.Controllers
             if (ModelState.IsValid)
             {
                 message.SendDate = System.DateTime.Now;
-                message.IsRead = false;
+                message.isRead = false;
                 _context.Messages.Add(message);
                 _context.SaveChanges();
                 return RedirectToAction("Index"); // Or show success message

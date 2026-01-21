@@ -16,9 +16,9 @@ namespace AkademiQPortfolio.Controllers
         {
             ViewBag.v1 = _context.Skills.Count();
             ViewBag.v2 = _context.Messages.Count();
-            ViewBag.v3 = _context.Messages.Where(x => x.IsRead == false).Count();
+            ViewBag.v3 = _context.Messages.Where(x => x.isRead == false).Count();
             ViewBag.v4 = _context.Works.Count();
-            ViewBag.v5 = _context.Testimonials.Count();
+
             ViewBag.v6 = _context.Experiences.Count();
             return View();
         }

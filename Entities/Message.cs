@@ -5,7 +5,7 @@ namespace AkademiQPortfolio.Entities;
 
 public partial class Message
 {
-    public int? MessageId { get; set; }
+    public int MessageId { get; set; }
 
     public string? SenderName { get; set; }
 
@@ -15,5 +15,7 @@ public partial class Message
 
     public DateTime? SendDate { get; set; }
 
-    public bool? IsRead { get; set; }
+    public bool? isRead { get; set; }
+
+    public string messageSubject { get; set; }
 }

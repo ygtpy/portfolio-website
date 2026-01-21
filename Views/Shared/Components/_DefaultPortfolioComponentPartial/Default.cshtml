@@ -1,36 +1,43 @@
-﻿@model List<AkademiQPortfolio.Entities.Work>
-@using System.Linq
+﻿@model List<Work>
 
 <section id="section6">
-	<div class="container">
-		<h2>Projelerim</h2>
-		<div class="portfolio-wrapper">
-			<div id="portfolio-filters" class="portfolio-filters">
-				<button class="button solid-button white-purple small" data-filter="*">Hepsini Göster</button>
-                @foreach(var category in Model.Select(x => x.SubTitle).Distinct())
+    <div class="container">
+        <h2>Projelerim</h2>
+        <div class="portfolio-wrapper">
+            <div id="portfolio-filters" class="portfolio-filters">
+                <button class="button solid-button white-purple small" data-filter=".Web">Web Uygulamas</button>
+                <button class="button solid-button white-purple small" data-filter=".Mobil">Todolist uygulaması</button>
+                <button class="button solid-button white-purple small" data-filter=".Web">E-Kitap web sitesi</button>
+            </div>
+
+            <div id="portfolio" class="portfolio">
+                @if (Model != null && Model.Count > 0)
                 {
-                    if(!string.IsNullOrEmpty(category))
+                    foreach (var item in Model)
                     {
-                        <button class="button solid-button white-purple small" data-filter=".@category.ToLower().Replace(" ", "-")">@category</button>
+                        <div class="item @item.SubTitle">
+                            <img src=@item.ImageUrl alt="alt text" class="img-responsive">
+                            <a href="#" class="overlay">
+                                <div class="background"></div>
+                                <div class="meta">
+                                    <span class="title">@item.Title</span>
+                                    <span class="category">@item.SubTitle</span>
+                                </div>
+                            </a>
+                        </div>
                     }
                 }
-			</div>
-			<div id="portfolio" class="portfolio">
-                @foreach(var item in Model)
+                else
                 {
-                    var categoryClass = item.SubTitle != null ? item.SubTitle.ToLower().Replace(" ", "-") : "";
-				    <div class="item @categoryClass">
-					    <img src="@item.ImageUrl" alt="@item.Title" class="img-responsive">
-					    <a href="#" class="overlay">
-						    <div class="background"></div>
-						    <div class="meta">
-							    <span class="title">@item.Title</span>
-							    <span class="category">@item.SubTitle</span>
-						    </div> 
-					    </a>
-				    </div>
+                    @* E?er liste bo?sa bu yaz? g?r?necek *@
+                    <p style="text-align:center; padding:20px; color:gray;">Henüz görüntülenecek bir proje bulunamadı.</p>
                 }
-			</div>
-		</div>
-	</div>
+            </div>
+
+            <div class="portfolio-load-more">
+                <a href="#" class="button solid-button white icon-right">Proje Ekleyin<i class="md-refresh"></i></a>
+            </div>
+        </div>
+    </div>
 </section>
+

@@ -1,7 +1,6 @@
 using AkademiQPortfolio.Data;
 using AkademiQPortfolio.Entities;
 using Microsoft.AspNetCore.Mvc;
-using System.Linq;
 
 namespace AkademiQPortfolio.Controllers
 {
@@ -14,38 +13,38 @@ namespace AkademiQPortfolio.Controllers
             _context = context;
         }
 
-        public IActionResult Index()
+        public IActionResult EducationList()
         {
             var values = _context.Educations.ToList();
             return View(values);
         }
 
         [HttpGet]
+
         public IActionResult CreateEducation()
         {
             return View();
         }
 
         [HttpPost]
+
         public IActionResult CreateEducation(Education education)
         {
             _context.Educations.Add(education);
             _context.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("EducationList");
         }
 
         public IActionResult DeleteEducation(int id)
         {
             var value = _context.Educations.Find(id);
-            if(value != null)
-            {
-                _context.Educations.Remove(value);
-                _context.SaveChanges();
-            }
-            return RedirectToAction("Index");
+            _context.Educations.Remove(value);
+            _context.SaveChanges();
+            return RedirectToAction("EducationList");
         }
 
         [HttpGet]
+
         public IActionResult UpdateEducation(int id)
         {
             var value = _context.Educations.Find(id);
@@ -53,11 +52,12 @@ namespace AkademiQPortfolio.Controllers
         }
 
         [HttpPost]
+
         public IActionResult UpdateEducation(Education education)
         {
             _context.Educations.Update(education);
             _context.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("EducationList");
         }
     }
 }

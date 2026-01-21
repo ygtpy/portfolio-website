@@ -1,77 +1,155 @@
-﻿@using AkademiQPortfolio.Entities
-@model List<Contact>
-@{
-    var contact = Model.FirstOrDefault();
-}
-
+﻿@model List<Contact>
 <section id="section8">
 	<div class="container">
-		<h2>Bana Ulaşın</h2>
-		<div class="row">
-			<div class="col-sm-5">
-				<h5>İletişim Adresi</h5>
-				<ul class="list-icons list-unstyled">
-					<li><i class="ion-ios-location-outline"></i>@(contact?.Address ?? "Adres Bilgisi Yok")</li>
-					<li><i class="ion-iphone"></i>Telefon: @(contact?.Phone ?? "Telefon Yok")</li>
-					<li><i class="ion-ios-email-outline"></i>Email: <a href="mailto:@(contact?.Email)">@(contact?.Email ?? "Email Yok")</a></li>
-					<li><i class="ion-ios-home-outline"></i>Website: <a href="@(contact?.WebSite)">@(contact?.WebSite ?? "Site Yok")</a></li>
-				</ul>
-				<div class="spacer"></div>
-				<div class="social-icons">
-					<a href="#" class="social-icon"><i class="fa fa-facebook"></i></a>
-					<a href="#" class="social-icon"><i class="fa fa-twitter"></i></a>
-					<a href="#" class="social-icon"><i class="fa fa-linkedin"></i></a>
-                    <a href="#" class="social-icon"><i class="fa fa-github"></i></a>
+		<h2>Benimle iletişime geçin</h2>
+		@foreach (var item in Model)
+		{
+			<div class="row">
+				<div class="col-sm-5">
+					<h5>?leti?im Bilgileri</h5>
+					<ul class="list-icons list-unstyled">
+						<li><i class="ion-iphone"></i>Telefon: @item.Phone</li>
+						<li><i class="ion-ios-email-outline"></i>Email: <a href="mailto:@item.Email">@item.Email</a></li>
+					</ul>
+					<div class="spacer"></div>
+					<div class="social-icons">
+						<a href="" class="social-icon" target="_blank">
+							<img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn" width="32" height="32">
+						</a>
+						<a href="" class="social-icon" target="_blank">
+							<img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub" width="32" height="32">
+						</a>
+					</div>
+					<div class="spacer"></div>
 				</div>
-				<div class="spacer"></div>
+
+				<div class="col-sm-7">
+					<h5>Bana Yaz?n</h5>
+					<form action="scripts/contact.php" method="post" class="form-horizontal contact-form">
+						<div class="form-group">
+							<label class="col-sm-2 control-label">isminiz</label>
+							<div class="col-sm-10">
+								<input type="text" class="contact-name" name="contact-name" required />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Email</label>
+							<div class="col-sm-10">
+								<input type="email" class="contact-email" name="contact-email" required />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Konu</label>
+							<div class="col-sm-10">
+								<select class="form-control contact-subject" name="contact-subject" required>
+									<option value="">Konu seçiniz...</option>
+									<option value="Proje Teklifi">Proje Teklifi</option>
+									<option value="İşbirliği">İşbirliği</option>
+									<option value="Eğitim/Kurumsal Eğitim Talebi">Eğitim/Kurumsal Eğitim Talebi</option>
+									<option value="Web API Geliştirmesi Talebi">Web API Geliştirmesi Talebi</option>
+									<option value="Teknik Destek/Danışmanlık">Teknik Destek/Danışmanlık</option>
+									<option value="Diğer">Diğer</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Mesajınız</label>
+							<div class="col-sm-10">
+								<textarea name="contact-message" class="contact-message" rows="5" required></textarea>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-10 col-sm-offset-2">
+								<button type="submit" class="button solid-button purple">Mesaj? g?nder</button>
+							</div>
+						</div>
+						<div class="contact-loading alert alert-info form-alert">
+							<span class="message">Loading...</span>
+							<button type="button" class="close" data-hide="alert" aria-label="Close"><i class="fa fa-times"></i></button>
+						</div>
+						<div class="contact-success alert alert-success form-alert">
+							<span class="message">Success!</span>
+							<button type="button" class="close" data-hide="alert" aria-label="Close"><i class="fa fa-times"></i></button>
+						</div>
+						<div class="contact-error alert alert-danger form-alert">
+							<span class="message">Error!</span>
+							<button type="button" class="close" data-hide="alert" aria-label="Close"><i class="fa fa-times"></i></button>
+						</div>
+					</form>
+				</div>
 			</div>
-			<div class="col-sm-7">
-				<h5>İletişim Formu</h5>
-				<form action="/Default/SendMessage" method="post" class="form-horizontal contact-form">
-					<div class="form-group">
-						<label class="col-sm-2 control-label">Adınız</label>
-						<div class="col-sm-10">
-							<input type="text" class="contact-name form-control" name="SenderName" required />
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-2 control-label">Email</label>
-						<div class="col-sm-10">
-							<input type="email" class="contact-email form-control" name="SenderEmail" required />
-						</div>
-					</div>
-                     <div class="form-group">
-						<label class="col-sm-2 control-label">Konu</label>
-						<div class="col-sm-10">
-							<select class="form-control" name="MessageSubject" required>
-                                <option value="" disabled selected>Konu Seçiniz</option>
-                                <option value="Proje teklifi">Proje teklifi</option>
-                                <option value="İşbirliği">İşbirliği</option>
-                                <option value="Eğitim/kurumsal eğitim talebi">Eğitim/kurumsal eğitim talebi</option>
-                                <option value="Web API geliştirme talebi">Web API geliştirme talebi</option>
-                                <option value="Teknik destek/danışmanlık">Teknik destek/danışmanlık</option>
-                                <option value="Diğer">Diğer</option>
-                            </select>
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-2 control-label">Mesaj</label>
-						<div class="col-sm-10">
-							<textarea name="MessageText" class="contact-message form-control" rows="3" required></textarea>
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="col-sm-10 col-sm-offset-2">
-							<button type="submit" class="button solid-button purple">Mesaj Gönder</button>
-						</div>
-					</div>
-				</form>
-			</div>
-		</div>
-        @if (!string.IsNullOrEmpty(contact?.MapLocation)) {
-		    <div class="map" id="map">
-                <iframe src="@contact.MapLocation" width="100%" height="400" frameborder="0" style="border:0" allowfullscreen></iframe>
-            </div>
-        }
+		}
+		<div class="map" id="map"></div>
 	</div>
 </section>
+
+<style>
+	#map {
+		width: 100%;
+		height: 400px !important;
+		background-color: #e5e5e5;
+		margin-top: 30px;
+		border-radius: 8px;
+	}
+
+	.contact-subject {
+		height: 40px;
+		padding: 8px 12px;
+		border: 1px solid #ddd;
+		border-radius: 4px;
+		font-size: 14px;
+		width: 100%;
+	}
+
+		.contact-subject:focus {
+			border-color: #9b59b6;
+			outline: none;
+			box-shadow: 0 0 5px rgba(155, 89, 182, 0.3);
+		}
+</style>
+
+<script>
+	(function() {
+		if (window.mapInitialized) {
+			return;
+		}
+		window.mapInitialized = true;
+
+		function startMap() {
+			console.log("Harita başlatılıyor...");
+
+			var mapEl = document.getElementById('map');
+			if (!mapEl) {
+				console.log("Map element yok");
+				return;
+			}
+
+			if (typeof google === 'undefined' || !google.maps) {
+				console.log("Google Maps y�klenmemdi");
+				setTimeout(startMap, 500);
+				return;
+			}
+
+			try {
+				var loc = {lat: 37.925, lng: 32.836944}; 
+				var map = new google.maps.Map(mapEl, {
+					center: loc,
+					zoom: 14
+				});
+
+				var marker = new google.maps.Marker({
+					position: loc,
+					map: map,
+					title: 'yigit ali sunal'
+				});
+
+				console.log("Harita yüklendi!");
+			} catch (e) {
+				console.error("Harita hatası:", e);
+			}
+		}
+
+		setTimeout(startMap, 1000);
+	})();
+</script>
+

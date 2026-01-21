@@ -1,6 +1,6 @@
-using System.Diagnostics;
 using AkademiQPortfolio.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
 
 namespace AkademiQPortfolio.Controllers
 {

@@ -16,7 +16,6 @@ public partial class AppDbContext : DbContext
     {
     }
 
-    // singularz
     public virtual DbSet<About> Abouts { get; set; }
 
     public virtual DbSet<Contact> Contacts { get; set; }
@@ -29,15 +28,13 @@ public partial class AppDbContext : DbContext
 
     public virtual DbSet<Message> Messages { get; set; }
 
-    public virtual DbSet<Testimonial> Testimonials { get; set; }
-
     public virtual DbSet<Skill> Skills { get; set; }
 
     public virtual DbSet<Work> Works { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("server=DESKTOP-U7H8DH8\\SQLEXPRESS;database=AkademiQPotfolioDb;integrated security=true;trustServerCertificate=true");
+        => optionsBuilder.UseSqlServer("server=.\\SQLEXPRESS;database=AkademiQPortfolioDb;integrated security=true;trustServerCertificate=true");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -46,26 +43,24 @@ public partial class AppDbContext : DbContext
             entity.HasKey(e => e.AboutId);
 
             entity.Property(e => e.AboutId).ValueGeneratedOnAdd();
-            entity.Property(e => e.Address)
-                .HasMaxLength(50)
-                .IsFixedLength();
-            entity.Property(e => e.Description)
-                .HasMaxLength(500)
-                .IsFixedLength();
-            entity.Property(e => e.Email)
-                .HasMaxLength(50)
-                .IsFixedLength();
-            entity.Property(e => e.ImageUrl).HasMaxLength(250);
+            entity.Property(e => e.Address).HasMaxLength(50);
+            entity.Property(e => e.Description).HasMaxLength(500);
+            entity.Property(e => e.Email).HasMaxLength(50);
+            entity.Property(e => e.ImageUrl)
+                .HasMaxLength(250)
+                .HasColumnName("ImageURL");
             entity.Property(e => e.NameSurname).HasMaxLength(50);
-            entity.Property(e => e.Phone)
-                .HasMaxLength(50)
-                .IsFixedLength();
-            entity.Property(e => e.Title).HasMaxLength(50);
+            entity.Property(e => e.Phone).HasMaxLength(50);
+            entity.Property(e => e.Title1).HasMaxLength(50);
+            entity.Property(e => e.Title2).HasMaxLength(50);
+            entity.Property(e => e.Title3).HasMaxLength(50);
+            entity.Property(e => e.Title4).HasMaxLength(50);
+            entity.Property(e => e.Title5).HasMaxLength(50);
         });
 
         modelBuilder.Entity<Contact>(entity =>
         {
-            entity.Property(e => e.Address).HasMaxLength(100);
+            entity.Property(e => e.Adress).HasMaxLength(50);
             entity.Property(e => e.Email).HasMaxLength(50);
             entity.Property(e => e.Phone).HasMaxLength(50);
             entity.Property(e => e.WebSite).HasMaxLength(50);
@@ -81,7 +76,7 @@ public partial class AppDbContext : DbContext
         modelBuilder.Entity<Experience>(entity =>
         {
             entity.Property(e => e.CompanyName).HasMaxLength(50);
-            entity.Property(e => e.Description).HasMaxLength(500);
+            entity.Property(e => e.Desription).HasMaxLength(500);
             entity.Property(e => e.IconUrl).HasMaxLength(100);
             entity.Property(e => e.Title).HasMaxLength(50);
             entity.Property(e => e.WorkDate).HasMaxLength(50);
@@ -89,14 +84,15 @@ public partial class AppDbContext : DbContext
 
         modelBuilder.Entity<Hobby>(entity =>
         {
-            entity.Property(e => e.IconUr).HasMaxLength(200);
+            entity.HasKey(e => e.HobbieId);
+
+            entity.Property(e => e.IconUrl).HasMaxLength(250);
             entity.Property(e => e.Title).HasMaxLength(50);
         });
 
         modelBuilder.Entity<Message>(entity =>
         {
-            entity.HasKey(e => e.MessageId);
-
+            entity.Property(e => e.isRead).HasColumnName("isRead");
             entity.Property(e => e.MessageText).HasMaxLength(500);
             entity.Property(e => e.SendDate).HasColumnType("datetime");
             entity.Property(e => e.SenderEmail).HasMaxLength(50);
@@ -105,27 +101,14 @@ public partial class AppDbContext : DbContext
 
         modelBuilder.Entity<Skill>(entity =>
         {
-            entity.ToTable("Skill");
-
-            entity.Property(e => e.SkillTitle)
-                .HasMaxLength(50)
-                .IsFixedLength();
+            entity.Property(e => e.SkillTitle).HasMaxLength(50);
+            entity.Property(e => e.SkillValue).HasMaxLength(50);
         });
 
         modelBuilder.Entity<Work>(entity =>
         {
             entity.Property(e => e.SubTitle).HasMaxLength(50);
             entity.Property(e => e.Title).HasMaxLength(50);
-        });
-
-
-
-        modelBuilder.Entity<Testimonial>(entity =>
-        {
-            entity.HasKey(e => e.TestimonialId);
-            entity.Property(e => e.ClientName).HasMaxLength(100);
-            entity.Property(e => e.Company).HasMaxLength(100);
-            entity.Property(e => e.Comment).HasMaxLength(500);
         });
 
         OnModelCreatingPartial(modelBuilder);

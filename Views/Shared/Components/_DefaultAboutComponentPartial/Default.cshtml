@@ -1,5 +1,4 @@
-﻿
-@model List<About>
+﻿@model List<About>
 
 
 <section id="section2">
@@ -7,37 +6,49 @@
 		<h2>Hakkımda</h2>
 
 		@foreach (var item in Model)
-        {
-            <div class="row">
-			<div class="col-sm-3">
-				<img src="@item.ImageUrl" alt="man" class="img-responsive section-img">
-			</div> <!-- end .col-sm-3 -->
-			<div class="col-sm-9">
-				<h3 class="small-margin-bottom">@item.NameSurname</h3>
-				<h5> @item.Title</h5>
-				<p>@item.Description  </p>
-
-				<ul class="list-unstyled text-uppercase">
-					<li><b>Doğum Tarihim:</b> 3 March 2003</li>
-					<li><b>Telefon:</b> @item.Phone</li>
-					<li><b>Email:</b> @item.Email</li>
-					<li><b>Adres:</b> @item.Address</li>
-						<li><b>GitHub:</b> https://github.com/ygtpy</li>
-				</ul> <!-- end .list-unstyled -->
-				<div class="spacer"></div>
-				<h3>Ne iş yapıyorum</h3>
-				<div class="row">
-					<div class="col-sm-4">
-						<div class="service">
-							<div class="icon"><i class="ion-monitor"></i></div>
-							<h5>@item.Title</h5>
-						</div> <!-- end .service -->
-					</div> <!-- end .col-sm-4 -->
-
-				</div> <!-- end .row -->
-			</div> <!-- end .col-sm-9 -->
-		</div> <!-- end .row -->
-        }
-		
+		{
+			<div class="row">
+				<div class="col-sm-3">
+					<img src="/sility/images/Instagram.jpg" alt="man" class="img-responsive section-img">
+				</div> <!-- end .col-sm-3 -->
+				<div class="col-sm-9">
+					<h3 class="small-margin-bottom">@item.NameSurname</h3>
+					<h5>@item.Title1</h5>
+					<p>@item.Description</p>
+					<ul class="list-unstyled text-uppercase">
+						<li><b>Do?um Tarihi:</b> 3 Mart 2003</li>
+						<li><b>Telefon:</b> @item.Phone</li>
+						<li><b>Email:</b> <a href="mailto:@item.Email">@item.Email</a></li>
+						<li><b>Adres:</b> @item.Address</li>
+						<li><b>Linkedin:</b> <a href="https://www.linkedin.com/in/beren-yilmaz/" target="_blank">Yigit Ali Sunal </a></li>
+						<li><b>GitHub:</b> <a href="https://www.github.com/BerenYilmaz" target="_blank">ygtpy</a></li>
+					</ul> <!-- end .list-unstyled -->
+					<div class="spacer"></div>
+					<h3>Ne iş Yapıyorum</h3>
+					<div class="row">
+						<div class="col-sm-4">
+							<div class="service">
+								<div class="icon"><i class="ion-monitor"></i></div>
+								<h5>@item.Title1</h5>
+							</div> <!-- end .service -->
+						</div> <!-- end .col-sm-4 -->
+						<div class="col-sm-4">
+							<div class="service">
+								<div class="icon"><i class="ion-laptop"></i></div>
+								<h5>@item.Title2</h5>
+							</div> <!-- end .service -->
+						</div> <!-- end .col-sm-4 -->
+						<div class="col-sm-4">
+							<div class="service">
+								<div class="icon"><i class="ion-laptop"></i></div>
+								<h5>@item.Title3</h5>
+							</div> <!-- end .service -->
+						</div> <!-- end .col-sm-4 -->
+					</div> <!-- end .row -->
+				</div> <!-- end .col-sm-9 -->
+			</div>
+		}
+		<!-- end .row -->
 	</div> <!-- end .container -->
-</section> <!-- end #section1 -->
+</section> 
+

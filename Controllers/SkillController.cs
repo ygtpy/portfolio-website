@@ -13,7 +13,7 @@ namespace AkademiQPortfolio.Controllers
             _context = context;
         }
 
-        public IActionResult Index()
+        public IActionResult SkillList()
         {
             var values = _context.Skills.ToList();
             return View(values);
@@ -25,52 +25,35 @@ namespace AkademiQPortfolio.Controllers
             return View();
         }
 
-        [HttpPost]
         public IActionResult CreateSkill(Skill skill)
         {
             _context.Skills.Add(skill);
             _context.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("SkillList");
         }
-
         public IActionResult DeleteSkill(int id)
         {
-            var skill = _context.Skills.Find(id);
-
-            if (skill == null)
-            {
-                return NotFound();
-            }
-
-            _context.Skills.Remove(skill);
+            var value = _context.Skills.Find(id);
+            _context.Skills.Remove(value);
             _context.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("SkillList");
         }
 
         [HttpGet]
+
         public IActionResult UpdateSkill(int id)
         {
-            var skill = _context.Skills.Find(id);
-
-            if (skill == null)
-            {
-                return NotFound();
-            }
-            return View(skill);
+            var value = _context.Skills.Find(id);
+            return View(value);
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken] 
+
         public IActionResult UpdateSkill(Skill skill)
         {
-            if (!ModelState.IsValid)
-            {
-                return View(skill);
-            }
-
             _context.Skills.Update(skill);
             _context.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("SkillList");
         }
     }
 }

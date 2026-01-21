@@ -3,128 +3,76 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<div class="space-y-8">
-    <!-- Welcome Section -->
-    <div class="relative overflow-hidden rounded-2xl bg-gradient-to-r from-indigo-500 to-purple-600 p-8 text-white shadow-xl">
-        <div class="relative z-10">
-            <h2 class="text-3xl font-bold">Hoş Geldin, Admin! 👋</h2>
-            <p class="mt-2 text-indigo-100 text-lg">Portfolio yönetim paneline hoş geldiniz. İşte bugünkü durum özeti.</p>
-        </div>
-        <div class="absolute -right-10 -bottom-10 h-64 w-64 rounded-full bg-white/10 blur-3xl"></div>
-        <div class="absolute -top-10 -right-10 h-64 w-64 rounded-full bg-indigo-600/20 blur-3xl"></div>
+<div class="flex flex-col gap-6">
+    <div class="flex items-center justify-between">
+        <h2 class="text-2xl font-bold tracking-tight">Dashboard Overview</h2>
+        <div class="text-sm text-slate-500 dark:text-slate-400">Last updated: @DateTime.Now.ToString("g")</div>
     </div>
 
-    <!-- Stats Grid -->
-    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        <!-- Stat Card 1 -->
-        <div class="group relative overflow-hidden rounded-2xl bg-white dark:bg-slate-800 p-6 shadow-sm ring-1 ring-slate-200 dark:ring-slate-700 transition-all hover:shadow-md hover:ring-primary/50">
-            <div class="flex items-center justify-between">
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <!-- Stat Card: Skills -->
+        <div class="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 transition-all hover:shadow-lg dark:border-slate-800 dark:bg-surface-dark">
+            <div class="flex items-center gap-4">
+                <div class="flex h-14 w-14 items-center justify-center rounded-xl bg-blue-50 text-blue-600 transition-colors group-hover:bg-blue-600 group-hover:text-white dark:bg-blue-500/10 dark:text-blue-400 dark:group-hover:bg-blue-500">
+                    <span class="material-symbols-outlined text-3xl">code</span>
+                </div>
                 <div>
-                    <p class="text-sm font-medium text-slate-500 dark:text-slate-400">Toplam Proje</p>
-                    <p class="mt-2 text-3xl font-bold text-slate-900 dark:text-white">@ViewBag.v4</p>
+                    <p class="text-sm font-medium text-slate-500 dark:text-slate-400">Total Skills</p>
+                    <h3 class="text-3xl font-bold text-slate-900 dark:text-white">@ViewBag.v1</h3>
                 </div>
-                <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400">
-                    <span class="material-symbols-outlined text-2xl">folder_open</span>
-                </div>
-            </div>
-            <div class="mt-4 flex items-center text-sm text-slate-500">
-                <span class="text-emerald-500 font-medium flex items-center gap-1">
-                    <span class="material-symbols-outlined text-base">trending_up</span> Aktif
-                </span>
-                <span class="mx-2 text-slate-300">•</span>
-                <span>Tüm zamanlar</span>
             </div>
         </div>
 
-        <!-- Stat Card 2 -->
-        <div class="group relative overflow-hidden rounded-2xl bg-white dark:bg-slate-800 p-6 shadow-sm ring-1 ring-slate-200 dark:ring-slate-700 transition-all hover:shadow-md hover:ring-primary/50">
-            <div class="flex items-center justify-between">
+        <!-- Stat Card: Messages -->
+        <div class="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 transition-all hover:shadow-lg dark:border-slate-800 dark:bg-surface-dark">
+            <div class="flex items-center gap-4">
+                <div class="flex h-14 w-14 items-center justify-center rounded-xl bg-green-50 text-green-600 transition-colors group-hover:bg-green-600 group-hover:text-white dark:bg-green-500/10 dark:text-green-400 dark:group-hover:bg-green-500">
+                    <span class="material-symbols-outlined text-3xl">mail</span>
+                </div>
                 <div>
-                    <p class="text-sm font-medium text-slate-500 dark:text-slate-400">Yetenek Sayısı</p>
-                    <p class="mt-2 text-3xl font-bold text-slate-900 dark:text-white">@ViewBag.v1</p>
+                    <p class="text-sm font-medium text-slate-500 dark:text-slate-400">Total Messages</p>
+                    <h3 class="text-3xl font-bold text-slate-900 dark:text-white">@ViewBag.v2</h3>
                 </div>
-                <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-purple-50 text-purple-600 dark:bg-purple-900/20 dark:text-purple-400">
-                    <span class="material-symbols-outlined text-2xl">code</span>
-                </div>
-            </div>
-            <div class="mt-4 flex items-center text-sm text-slate-500">
-                <span class="text-emerald-500 font-medium flex items-center gap-1">
-                    <span class="material-symbols-outlined text-base">verified</span> Doğrulanmış
-                </span>
             </div>
         </div>
 
-        <!-- Stat Card 3 -->
-        <div class="group relative overflow-hidden rounded-2xl bg-white dark:bg-slate-800 p-6 shadow-sm ring-1 ring-slate-200 dark:ring-slate-700 transition-all hover:shadow-md hover:ring-primary/50">
-            <div class="flex items-center justify-between">
+        <!-- Stat Card: Unread Messages -->
+        <div class="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 transition-all hover:shadow-lg dark:border-slate-800 dark:bg-surface-dark">
+            <div class="flex items-center gap-4">
+                <div class="flex h-14 w-14 items-center justify-center rounded-xl bg-amber-50 text-amber-600 transition-colors group-hover:bg-amber-600 group-hover:text-white dark:bg-amber-500/10 dark:text-amber-400 dark:group-hover:bg-amber-500">
+                    <span class="material-symbols-outlined text-3xl">mark_email_unread</span>
+                </div>
                 <div>
-                    <p class="text-sm font-medium text-slate-500 dark:text-slate-400">Okunmamış Mesaj</p>
-                    <p class="mt-2 text-3xl font-bold text-slate-900 dark:text-white">@ViewBag.v3</p>
+                    <p class="text-sm font-medium text-slate-500 dark:text-slate-400">Unread Messages</p>
+                    <h3 class="text-3xl font-bold text-slate-900 dark:text-white">@ViewBag.v3</h3>
                 </div>
-                <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-50 text-amber-600 dark:bg-amber-900/20 dark:text-amber-400 relative">
-                    <span class="material-symbols-outlined text-2xl">mail</span>
-                    @if(ViewBag.v3 > 0) {
-                        <span class="absolute top-2 right-2 h-2.5 w-2.5 rounded-full bg-red-500 border-2 border-white dark:border-slate-800"></span>
-                    }
-                </div>
-            </div>
-            <div class="mt-4 flex items-center text-sm text-slate-500">
-                <a href="/Message/Index" class="text-primary hover:text-primary-focus font-medium flex items-center gap-1 hover:gap-2 transition-all">
-                    Mesajları Gör <span class="material-symbols-outlined text-base">arrow_forward</span>
-                </a>
-            </div>
-        </div>
-        
-         <!-- Stat Card 4 -->
-        <div class="group relative overflow-hidden rounded-2xl bg-white dark:bg-slate-800 p-6 shadow-sm ring-1 ring-slate-200 dark:ring-slate-700 transition-all hover:shadow-md hover:ring-primary/50">
-            <div class="flex items-center justify-between">
-                <div>
-                    <p class="text-sm font-medium text-slate-500 dark:text-slate-400">Deneyimler</p>
-                    <p class="mt-2 text-3xl font-bold text-slate-900 dark:text-white">@ViewBag.v6</p>
-                </div>
-                <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-teal-50 text-teal-600 dark:bg-teal-900/20 dark:text-teal-400">
-                    <span class="material-symbols-outlined text-2xl">history_edu</span>
-                </div>
-            </div>
-             <div class="mt-4 flex items-center text-sm text-slate-500">
-                <span>Profesyonel Geçmiş</span>
             </div>
         </div>
 
-        <!-- Stat Card 5 -->
-        <div class="group relative overflow-hidden rounded-2xl bg-white dark:bg-slate-800 p-6 shadow-sm ring-1 ring-slate-200 dark:ring-slate-700 transition-all hover:shadow-md hover:ring-primary/50">
-            <div class="flex items-center justify-between">
+        <!-- Stat Card: Works/Projects -->
+        <div class="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 transition-all hover:shadow-lg dark:border-slate-800 dark:bg-surface-dark">
+            <div class="flex items-center gap-4">
+                <div class="flex h-14 w-14 items-center justify-center rounded-xl bg-purple-50 text-purple-600 transition-colors group-hover:bg-purple-600 group-hover:text-white dark:bg-purple-500/10 dark:text-purple-400 dark:group-hover:bg-purple-500">
+                    <span class="material-symbols-outlined text-3xl">work_history</span>
+                </div>
                 <div>
-                    <p class="text-sm font-medium text-slate-500 dark:text-slate-400">Referanslar</p>
-                    <p class="mt-2 text-3xl font-bold text-slate-900 dark:text-white">@ViewBag.v5</p>
+                    <p class="text-sm font-medium text-slate-500 dark:text-slate-400">Total Projects</p>
+                    <h3 class="text-3xl font-bold text-slate-900 dark:text-white">@ViewBag.v4</h3>
                 </div>
-                <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-pink-50 text-pink-600 dark:bg-pink-900/20 dark:text-pink-400">
-                    <span class="material-symbols-outlined text-2xl">star</span>
-                </div>
-            </div>
-             <div class="mt-4 flex items-center text-sm text-slate-500">
-                <span>Müşteri Yorumları</span>
             </div>
         </div>
-
-         <!-- Stat Card 6 -->
-        <div class="group relative overflow-hidden rounded-2xl bg-white dark:bg-slate-800 p-6 shadow-sm ring-1 ring-slate-200 dark:ring-slate-700 transition-all hover:shadow-md hover:ring-primary/50">
-            <div class="flex items-center justify-between">
+         <!-- Stat Card: Experiences -->
+        <div class="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 transition-all hover:shadow-lg dark:border-slate-800 dark:bg-surface-dark">
+            <div class="flex items-center gap-4">
+                <div class="flex h-14 w-14 items-center justify-center rounded-xl bg-rose-50 text-rose-600 transition-colors group-hover:bg-rose-600 group-hover:text-white dark:bg-rose-500/10 dark:text-rose-400 dark:group-hover:bg-rose-500">
+                    <span class="material-symbols-outlined text-3xl">history_edu</span>
+                </div>
                 <div>
-                    <p class="text-sm font-medium text-slate-500 dark:text-slate-400">Toplam Mesaj</p>
-                    <p class="mt-2 text-3xl font-bold text-slate-900 dark:text-white">@ViewBag.v2</p>
+                    <p class="text-sm font-medium text-slate-500 dark:text-slate-400">Experiences</p>
+                    <h3 class="text-3xl font-bold text-slate-900 dark:text-white">@ViewBag.v6</h3>
                 </div>
-                <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-indigo-50 text-indigo-600 dark:bg-indigo-900/20 dark:text-indigo-400">
-                    <span class="material-symbols-outlined text-2xl">inbox</span>
-                </div>
-            </div>
-             <div class="mt-4 flex items-center text-sm text-slate-500">
-                <span>Gelen Kutusu</span>
             </div>
         </div>
-
     </div>
-
-    <!-- Recent Activity / Quick Actions Section could go here -->
-    
 </div>
+

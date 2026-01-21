@@ -2,7 +2,7 @@
 
 namespace AkademiQPortfolio.ViewComponents
 {
-    public class _DefaultNavbarComponentPartial: ViewComponent
+    public class _DefaultNavbarComponentPartial : ViewComponent
     {
         public IViewComponentResult Invoke()
         {

@@ -1,21 +1,20 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System.Linq;
-using AkademiQPortfolio.Data;
-
+﻿using AkademiQPortfolio.Data;
+using Microsoft.AspNetCore.Mvc;
 namespace AkademiQPortfolio.ViewComponents
 {
-    public class _DefaultContactComponentPartial: ViewComponent
+    public class _DefaultContactComponentPartial : ViewComponent
     {
-        private readonly AkademiQPortfolio.Data.AppDbContext _context;
+        public readonly AppDbContext _context;
 
-        public _DefaultContactComponentPartial(AkademiQPortfolio.Data.AppDbContext context)
+        public _DefaultContactComponentPartial(AppDbContext context)
         {
             _context = context;
         }
+
         public IViewComponentResult Invoke()
         {
-            var values = _context.Contacts.ToList();
-            return View(values);
+            var contactList = _context.Contacts.ToList();
+            return View(contactList);
         }
     }
 }

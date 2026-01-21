@@ -5,9 +5,9 @@ namespace AkademiQPortfolio.Entities;
 
 public partial class Hobby
 {
-    public int HobbyId { get; set; }
+    public int HobbieId { get; set; }
 
     public string? Title { get; set; }
 
-    public string? IconUr { get; set; }
+    public string? IconUrl { get; set; }
 }

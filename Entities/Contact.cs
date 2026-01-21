@@ -7,7 +7,7 @@ public partial class Contact
 {
     public int ContactId { get; set; }
 
-    public string? Address { get; set; }
+    public string? Adress { get; set; }
 
     public string? Phone { get; set; }
 

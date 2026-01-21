@@ -1,0 +1,89 @@
+﻿@model List<Work>
+@{
+    ViewData["Title"] = "�al��malar�m Listesi";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<div class="p-6 bg-gray-50 min-h-screen">
+    <div class="max-w-6xl mx-auto">
+
+        <div class="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
+            <div>
+                <h1 class="text-3xl font-extrabold text-gray-800 tracking-tight">�al��malar�m (Portfolyo)</h1>
+                <p class="text-gray-500 mt-1">Tamamlad���n�z projeleri ve �al��malar� buradan y�netebilirsiniz.</p>
+            </div>
+            <a href="/Work/CreateWork/" class="inline-flex items-center px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium rounded-lg transition-all duration-200 shadow-lg shadow-indigo-200">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+                Yeni �al��ma Ekle
+            </a>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-gray-50/50 border-b border-gray-100">
+                            <th class="px-6 py-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">#ID</th>
+                            <th class="px-6 py-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">Proje G�rseli</th>
+                            <th class="px-6 py-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">Ba�l�k / Alt Ba�l�k</th>
+                            <th class="px-6 py-4 text-xs font-semibold text-gray-500 uppercase tracking-wider text-right">��lemler</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-50">
+                        @foreach (var item in Model)
+                        {
+                            <tr class="hover:bg-blue-50/30 transition-colors duration-150 group">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-400 group-hover:text-indigo-600">
+                                    #@item.WorkId
+                                </td>
+
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="h-16 w-24 flex-shrink-0 overflow-hidden rounded-lg border border-gray-200">
+                                        @if (!string.IsNullOrEmpty(item.ImageUrl))
+                                        {
+                                            <img class="h-full w-full object-cover" src="@item.ImageUrl" alt="@item.Title">
+                                        }
+                                        else
+                                        {
+                                            <div class="h-full w-full bg-gray-100 flex items-center justify-center text-gray-400 text-xs">G�rsel Yok</div>
+                                        }
+                                    </div>
+                                </td>
+
+                                <td class="px-6 py-4">
+                                    <div class="flex flex-col">
+                                        <span class="text-sm font-bold text-gray-900">@item.Title</span>
+                                        <span class="text-xs text-gray-500 mt-1">@item.SubTitle</span>
+                                    </div>
+                                </td>
+
+                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                    <div class="flex justify-end space-x-2">
+                                        <a href="/Work/UpdateWork/@item.WorkId" class="inline-flex items-center px-3 py-1.5 bg-amber-50 text-amber-600 hover:bg-amber-100 rounded-md transition-colors shadow-sm">
+                                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
+                                            D�zenle
+                                        </a>
+                                        <a href="/Work/DeleteWork/@item.WorkId" onclick="return confirm('Bu �al��may� silmek istedi�inize emin misiniz?')" class="inline-flex items-center px-3 py-1.5 bg-red-50 text-red-600 hover:bg-red-100 rounded-md transition-colors shadow-sm">
+                                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                                            Sil
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            @if (Model.Count == 0)
+            {
+                <div class="text-center py-10 bg-gray-50">
+                    <p class="text-gray-500">Hen�z eklenmi� bir �al��ma/proje bulunmuyor.</p>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+

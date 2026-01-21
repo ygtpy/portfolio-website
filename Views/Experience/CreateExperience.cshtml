@@ -1,44 +1,100 @@
-@model AkademiQPortfolio.Entities.Experience
+﻿@model Experience
 @{
     ViewData["Title"] = "Yeni Deneyim Ekle";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<div class="max-w-2xl mx-auto">
-    <div class="flex items-center gap-4 mb-6">
-        <a href="/Experience/Index" class="p-2 hover:bg-slate-100 rounded-full transition-colors">
-            <span class="material-symbols-outlined">arrow_back</span>
-        </a>
-        <h2 class="text-2xl font-bold text-slate-800 dark:text-white">Yeni Deneyim Ekle</h2>
-    </div>
+<script src="https://cdn.tailwindcss.com"></script>
 
-    <div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-6">
-        <form method="post" class="space-y-6">
-            <div>
-                <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Unvan</label>
-                <input type="text" name="Title" class="w-full px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-lg bg-slate-50 dark:bg-slate-700 focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all" required />
-            </div>
-            
-            <div>
-                <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Şirket Adı</label>
-                <input type="text" name="CompanyName" class="w-full px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-lg bg-slate-50 dark:bg-slate-700 focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all" />
-            </div>
+<div class="p-6 bg-gray-50 min-h-screen flex items-center justify-center">
+    <div class="max-w-3xl w-full">
 
-            <div>
-                <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Tarih Aralığı</label>
-                <input type="text" name="WorkDate" placeholder="Örn: 2020 - 2022" class="w-full px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-lg bg-slate-50 dark:bg-slate-700 focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all" />
+        <div class="mb-6">
+            <a href="/Experience/ExperienceList/" class="inline-flex items-center text-sm text-gray-500 hover:text-indigo-600 transition-colors">
+                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                Listeye Geri D�n
+            </a>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-xl shadow-gray-200/50 border border-gray-100 overflow-hidden">
+
+            <div class="p-8 border-b border-gray-100 bg-gray-50/30">
+                <h1 class="text-2xl font-extrabold text-gray-800 tracking-tight">Yeni Deneyim Ekle</h1>
+                <p class="text-gray-500 mt-2 text-sm">�zge�mi�inize yeni bir i� tecr�besi veya proje deneyimi ekleyin.</p>
             </div>
 
-             <div>
-                <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Açıklama</label>
-                <textarea name="Description" rows="4" class="w-full px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-lg bg-slate-50 dark:bg-slate-700 focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all"></textarea>
-            </div>
+            <div class="p-8">
+                <form method="post" class="space-y-6">
 
-            <div class="pt-4 border-t border-slate-100 dark:border-slate-700 flex justify-end">
-                <button type="submit" class="px-6 py-2.5 bg-primary text-white rounded-lg font-medium shadow-lg shadow-primary/30 hover:shadow-primary/50 transition-all hover:-translate-y-0.5">
-                    Kaydet
-                </button>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">�irket Ad�</label>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                                </div>
+                                <input type="text" asp-for="CompanyName"
+                                       class="block w-full pl-10 pr-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 bg-gray-50/50 transition-all outline-none text-gray-700 placeholder-gray-400"
+                                       placeholder="�rn: Google, Microsoft" required />
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Unvan / Pozisyon</label>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0m-5 8a2 2 0 100-4 2 2 0 000 4zm0 0c1.306 0 2.417.835 2.83 2M9 14a3.001 3.001 0 00-2.83 2M15 11h3m-3 4h2"></path></svg>
+                                </div>
+                                <input type="text" asp-for="Title"
+                                       class="block w-full pl-10 pr-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 bg-gray-50/50 transition-all outline-none text-gray-700 placeholder-gray-400"
+                                       placeholder="�rn: Senior Software Engineer" required />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">�al��ma Tarihi</label>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                                </div>
+                                <input type="text" asp-for="WorkDate"
+                                       class="block w-full pl-10 pr-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 bg-gray-50/50 transition-all outline-none text-gray-700 placeholder-gray-400"
+                                       placeholder="�rn: A�ustos 2021 - Devam Ediyor" />
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">�irket Logo URL</label>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
+                                </div>
+                                <input type="text" asp-for="IconUrl"
+                                       class="block w-full pl-10 pr-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 bg-gray-50/50 transition-all outline-none text-gray-700 placeholder-gray-400"
+                                       placeholder="https://..." />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Deneyim A��klamas�</label>
+                        <textarea asp-for="Desription" rows="4"
+                                  class="block w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 bg-gray-50/50 transition-all outline-none text-gray-700 placeholder-gray-400"
+                                  placeholder="Bu pozisyondaki sorumluluklar�n�z ve ba�ar�lar�n�zdan bahsedin..."></textarea>
+                    </div>
+
+                    <div class="pt-4 border-t border-gray-100">
+                        <button type="submit" class="w-full inline-flex justify-center items-center px-6 py-3.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl transition-all duration-200 shadow-lg shadow-indigo-100 transform active:scale-[0.98]">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            Deneyimi Kaydet
+                        </button>
+                    </div>
+                </form>
             </div>
-        </form>
+        </div>
+
     </div>
 </div>
+

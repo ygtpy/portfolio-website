@@ -1,38 +1,75 @@
-﻿<nav class="flex flex-col gap-2">
-    <a class="flex items-center gap-3 rounded-full bg-primary px-4 py-3 text-white shadow-lg shadow-primary/20 transition-all hover:brightness-110" href="/Admin/Index">
+﻿@{
+    // 1. O anki Controller ad?n? al?yoruz (?rn: "Work", "Skill", "Statistics")
+    var currentController = ViewContext.RouteData.Values["Controller"]?.ToString();
+
+    // 2. CSS S?n?flar?n? De?i?kenlere Atad?k (Kod tekrar?n? ?nlemek i?in)
+
+    // AKT?F (Se?ili) Durum: Mavi arka plan, beyaz yaz?
+    var activeClass = "bg-primary text-white shadow-lg shadow-primary/20 hover:brightness-110";
+
+    // PAS?F (Se?ili De?il) Durum: Gri yaz?, hover olunca hafif gri arka plan
+    var inactiveClass = "text-slate-600 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800/50 group";
+
+    // HER ?K?S?NDE ORTAK OLANLAR: Yuvarlak k??eler, padding, flex yap?
+    var baseClass = "flex items-center gap-3 rounded-full px-4 py-3 transition-all";
+}
+
+<nav class="flex flex-col gap-2">
+
+    <a asp-controller="Statistics"
+       asp-action="StatisticsCards"
+       class="@baseClass @(currentController == "Statistics" ? activeClass : inactiveClass)">
+
         <span class="material-symbols-outlined icon-fill">dashboard</span>
         <span class="text-sm font-semibold">Dashboard</span>
     </a>
-    <a class="group flex items-center gap-3 rounded-full px-4 py-3 text-slate-600 transition-colors hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800/50" href="/Work/Index">
+
+    <a asp-controller="Work"
+       asp-action="WorkList"
+       class="@baseClass @(currentController == "Work" ? activeClass : inactiveClass)">
+
         <span class="material-symbols-outlined group-hover:text-primary transition-colors">folder_open</span>
         <span class="text-sm font-medium group-hover:text-slate-900 dark:group-hover:text-white">Projelerim</span>
     </a>
-    <a class="group flex items-center gap-3 rounded-full px-4 py-3 text-slate-600 transition-colors hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800/50" href="/Skill/Index">
+
+    <a asp-controller="Skill"
+       asp-action="SkillList"
+       class="@baseClass @(currentController == "Skill" ? activeClass : inactiveClass)">
+
         <span class="material-symbols-outlined group-hover:text-primary transition-colors">code</span>
         <span class="text-sm font-medium group-hover:text-slate-900 dark:group-hover:text-white">Yeteneklerim</span>
     </a>
-    <a class="group flex items-center gap-3 rounded-full px-4 py-3 text-slate-600 transition-colors hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800/50" href="/Experience/Index">
+
+    <a asp-controller="Experience"
+       asp-action="ExperienceList"
+       class="@baseClass @(currentController == "Experience" ? activeClass : inactiveClass)">
+
         <span class="material-symbols-outlined group-hover:text-primary transition-colors">history_edu</span>
         <span class="text-sm font-medium group-hover:text-slate-900 dark:group-hover:text-white">Deneyimlerim</span>
     </a>
-    <a class="group flex items-center gap-3 rounded-full px-4 py-3 text-slate-600 transition-colors hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800/50" href="/Message/Index">
+
+    <a href="#"
+       class="@baseClass @inactiveClass">
         <span class="material-symbols-outlined group-hover:text-primary transition-colors">mail</span>
         <span class="text-sm font-medium group-hover:text-slate-900 dark:group-hover:text-white">Mesajlar</span>
-        @if (ViewBag.UnreadMessageCount > 0)
-        {
-            <span class="ml-auto flex h-5 w-5 items-center justify-center rounded-full bg-primary text-[10px] font-bold text-white">@ViewBag.UnreadMessageCount</span>
-        }
+        <span class="ml-auto flex h-5 w-5 items-center justify-center rounded-full bg-primary text-[10px] font-bold text-white">3</span>
     </a>
-    <a class="group flex items-center gap-3 rounded-full px-4 py-3 text-slate-600 transition-colors hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800/50" href="/Education/Index">
+
+    <a asp-controller="Education"
+       asp-action="EducationList"
+       class="@baseClass @(currentController == "Education" ? activeClass : inactiveClass)">
+
         <span class="material-symbols-outlined transition-colors" style="color: inherit;">school</span>
-        <span class="text-sm font-medium group-hover:text-slate-900 dark:group-hover:text-white">Eğitim</span>
+        <span class="text-sm font-medium group-hover:text-slate-900 dark:group-hover:text-white">E?itim</span>
     </a>
-    <a class="group flex items-center gap-3 rounded-full px-4 py-3 text-slate-600 transition-colors hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800/50" href="/Testimonial/Index">
-        <span class="material-symbols-outlined transition-colors" style="color: inherit;">star</span>
-        <span class="text-sm font-medium group-hover:text-slate-900 dark:group-hover:text-white">Referanslar</span>
-    </a>
-    <a class="group flex items-center gap-3 rounded-full px-4 py-3 text-slate-600 transition-colors hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800/50" href="/About/Index">
+
+    <a asp-controller="About"
+       asp-action="AboutList"
+       class="@baseClass @(currentController == "About" ? activeClass : inactiveClass)">
+
         <span class="material-symbols-outlined transition-colors" style="color: inherit;">person</span>
-        <span class="text-sm font-medium group-hover:text-slate-900 dark:group-hover:text-white">Hakkımda</span>
+        <span class="text-sm font-medium group-hover:text-slate-900 dark:group-hover:text-white">Hakk?mda</span>
     </a>
+
 </nav>
+

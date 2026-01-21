@@ -2,7 +2,7 @@
 
 namespace AkademiQPortfolio.ViewComponents
 {
-    public class _DefaultRightAreaComponentPartial: ViewComponent
+    public class _DefaultRightAreaComponentPartial : ViewComponent
     {
         public IViewComponentResult Invoke()
         {

@@ -1,6 +1,5 @@
 ﻿using AkademiQPortfolio.Data;
 using Microsoft.AspNetCore.Mvc;
-using System.Linq;
 
 namespace AkademiQPortfolio.ViewComponents
 {
@@ -15,8 +14,8 @@ namespace AkademiQPortfolio.ViewComponents
 
         public IViewComponentResult Invoke()
         {
-            var values = _context.Educations.ToList();
-            return View(values);
+            var educationList = _context.Educations.ToList();
+            return View(educationList);
         }
     }
 }

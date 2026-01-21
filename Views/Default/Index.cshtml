@@ -1,49 +1,45 @@
-﻿
-@{
-    Layout = null;
+﻿@{
+	Layout = null;
 }
 
 <!DOCTYPE html>
 <html lang="en">
 
+
 @await Component.InvokeAsync("_DefaultHeadComponentPartial")
+
 
 <body>
 
-	<!-- Search -->
 	@await Component.InvokeAsync("_DefaultRightAreaComponentPartial")
 
-	<!-- Header -->
-    @await Component.InvokeAsync("_DefaultNavbarComponentPartial")
-	<!-- end .header -->
+	@await Component.InvokeAsync("_DefaultNavbarComponentPartial")
 
-	
-	<!-- Sections -->
 	<div class="sections">
 		<div class="sections-wrapper clearfix">
 
-			<!-- Home -->
+
 			@await Component.InvokeAsync("_DefaultFeatureComponentPartial")
-			<!-- About -->
+
 			@await Component.InvokeAsync("_DefaultAboutComponentPartial")
-			<!-- Skills -->
-            @await Component.InvokeAsync("_DefaultSkillComponentPartial")
-			<!-- Experience -->
-            @await Component.InvokeAsync("_DefaultExperienceComponentPartial")
-			<!-- Education -->
+
+			@await Component.InvokeAsync("_DefaultSkillComponentPartial")
+
+			@await Component.InvokeAsync("_DefaultExperienceComponentPartial")
+
 			@await Component.InvokeAsync("_DefaultEducationComponentPartial")
-			<!-- Portfolio -->
-            @await Component.InvokeAsync("_DefaultPortfolioComponentPartial")
-			<!-- Contact -->
-            @await Component.InvokeAsync("_DefaultContactComponentPartial")
+
+			@await Component.InvokeAsync("_DefaultPortfolioComponentPartial")
+
+			@await Component.InvokeAsync("_DefaultContactComponentPartial")
 
 		</div> <!-- end .sections-wrapper -->
 	</div> <!-- end .sections -->
-	<!-- Footer -->
-    @await Component.InvokeAsync("_DefaultFooterComponentPartial")
-
+	@await Component.InvokeAsync("_DefaultFooterComponentPartial")
 
 	@await Component.InvokeAsync("_DefaultScriptsComponentPartial")
 
 </body>
 </html>
+
+
