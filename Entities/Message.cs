@@ -16,6 +16,4 @@ public partial class Message
     public DateTime? SendDate { get; set; }
 
     public bool? IsRead { get; set; }
-
-    public string MessageSubject { get; set; }
 }
